@@ -10,8 +10,8 @@ namespace ContactAPI.Controllers;
 public class ContactUsingRepoController : Controller
 {
     private readonly IContactRepo<Contact> contactRepo;
-    private readonly IContactService contactService;
-    public ContactUsingRepoController(IContactRepo<Contact> contactRepo,IContactService contactService)
+    private readonly IContactService<Contact> contactService;
+    public ContactUsingRepoController(IContactRepo<Contact> contactRepo,IContactService<Contact> contactService)
     {
         this.contactRepo = contactRepo;
         this.contactService = contactService;
@@ -61,7 +61,7 @@ public class ContactUsingRepoController : Controller
         contactRepo.Save();
         return Ok(contact);
     }
-
+     
     [HttpPut]
     [Route("{id:guid}")]
     public async Task<IActionResult> UpdateContactRepo([FromRoute] Guid id, UpdateContactRequest updateContactRequest)
@@ -75,7 +75,6 @@ public class ContactUsingRepoController : Controller
             contact.Phone = updateContactRequest.Phone;
             contactRepo.Update(contact);
             contactRepo.Save();
-
             return Ok(contact);
         }
         return NotFound();

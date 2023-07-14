@@ -23,8 +23,8 @@ namespace ContactAPI
 
             //builder.Services.AddDbContext<ContactApiDbContext>(options => options.UseInMemoryDatabase("ContactsDB"));
             builder.Services.AddDbContext<ContactApiDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("ContactsApiConnectionString")));
-            builder.Services.AddTransient<IContactRepo<Contact>, ContactRepo<Contact>>();
-            builder.Services.AddTransient<IContactService, ContactService>();
+            builder.Services.AddTransient(typeof(IContactRepo<>),typeof(ContactRepo<>));
+            builder.Services.AddTransient(typeof(IContactService<>),typeof(ContactService<>));
             builder.Services.AddAutoMapper(typeof(Program).Assembly);
             var app = builder.Build();
 

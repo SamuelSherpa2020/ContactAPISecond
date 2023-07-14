@@ -21,6 +21,7 @@ public class ContactRepo<T> : IContactRepo<T> where T : class
     {
         //_dbContext.Remove(contact);
         table.Remove(obj);
+        _dbContext.SaveChanges(); 
     }
 
     public List<T> GetAll()
@@ -39,6 +40,7 @@ public class ContactRepo<T> : IContactRepo<T> where T : class
     {
         //_dbContext.Add(contact);
         table.Add(obj);
+        _dbContext.SaveChanges();
     }
 
     public void Save()
@@ -47,7 +49,7 @@ public class ContactRepo<T> : IContactRepo<T> where T : class
         _dbContext.SaveChanges();
     }
 
-    public void Update(T obj)
+    public void Update(T obj) 
     {
         //_dbContext.Update(contact);
         //_dbContext.SaveChanges();

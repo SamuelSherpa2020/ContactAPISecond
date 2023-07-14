@@ -9,8 +9,8 @@ namespace ContactAPI.Controllers;
 [Route("api/[controller]")]
 public class ContactServiceRepoController : Controller
 {
-    private readonly IContactService _contactService;
-    public ContactServiceRepoController(IContactService contactService)
+    private readonly IContactService<Contact> _contactService;
+    public ContactServiceRepoController(IContactService<Contact> contactService)
     {
         _contactService = contactService;
     }
